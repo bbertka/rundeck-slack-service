@@ -15,11 +15,11 @@ RUN apt-get update && apt-get install -y tar git curl nano wget dialog net-tools
         &&  pip3 install -r /rundeck-slack-service/requirements.txt
 
 # Rundeck URL this app will forward requests to
-RUNDECK_WEBHOOK_URL https://changeme
+ENV RUNDECK_WEBHOOK_URL https://changeme
 
 # Slack slash command's variable names (used in Slack as /mycommand var1=value1, var2=value2), note value1 and value2 set by slash command
-SLACK_VAR1 var1
-SLACK_VAR2 var2
+ENV SLACK_VAR1 var1
+ENV SLACK_VAR2 var2
 
 # The web port
 ENV PORT 8080
