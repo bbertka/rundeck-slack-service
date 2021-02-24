@@ -60,12 +60,19 @@ log.setLevel(logging.CRITICAL)
 # Main Application
 #
 #---------------------------------------------------------------
+
+def restartService():
+        python = sys.executable
+        os.execl(python, python, * sys.argv)
+
 if __name__=='__main__':
         try:
                 service.start()
 
         except Exception as e:
                 print('Service error, main exception: %s' % e)
+                service.stop()
+                restartService()
 
         print('Service stopping')
         service.stop()
