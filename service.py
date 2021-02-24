@@ -34,7 +34,7 @@ def service_slack_handler():
         value2 = data.get('var2')
 
         # Save the associated key names for the Rundeck job parameters
-        key1 = os.getenv('SLACK_KEY1'))
+        key1 = os.getenv('SLACK_KEY1')
         key2 = os.getenv('SLACK_KEY2')
 
         # Build the transformed Rundeck Webhook request
