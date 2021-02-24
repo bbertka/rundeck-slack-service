@@ -12,7 +12,7 @@ import cfworker
 service = cfworker.cfworker( port=int(os.getenv('PORT')) )
 service.app = Flask(__name__)
 
-@worker.app.route('/')
+@service.worker.app.route('/')
 def service_home():
         return ('HELLO RUNDECK')
 
