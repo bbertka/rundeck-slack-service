@@ -1,7 +1,6 @@
 #!/usr/bin/python
 import time, os, sys
 from routing import worker
-import analysis
 import datetime
 
 
