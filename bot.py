@@ -15,7 +15,7 @@ if __name__=='__main__':
                 worker.start()
 
         except Exception as e:
-                print('Bot error, main exception: %s' % e)
+                print('Slack Service error, main exception: %s' % e)
                 worker.stop()
                 restartBot()
         worker.stop()
