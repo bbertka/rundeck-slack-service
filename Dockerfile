@@ -32,4 +32,4 @@ WORKDIR /rundeck-slack-service
 
 # Set the default command to execute
 # when creating a new container
-CMD python3 -u service.py
+CMD python3 -u bot.py
