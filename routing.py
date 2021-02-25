@@ -3,7 +3,6 @@
 from flask import Flask, request, redirect, url_for, send_from_directory, jsonify, Response
 import json, os, logging
 import cfworker
-import analysis
 import psutil
 import requests
 
