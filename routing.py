@@ -19,21 +19,33 @@ def keen_chart():
         return worker.app.send_static_file('index.html')
 
 @worker.app.route('/webhook', methods=['POST'])
-def rundeck_webhook():
-        token = request.form.get('token', None)  # TODO: validate the token
-        command = request.form.get('command', None)
+def service_slack_handler():
+        # TODO: Validate the Slack token
+        token = request.form.get('token', None)
+
+        # Parse the Slack request payload (Assumes format: var1=somevalue, var2=somvalue)
         text = request.form.get('text', None)
-        print("Webhook text: %s" % text)
         data = {i.split('=')[0]: i.split('=')[1] for i in text.split(', ') }
-        print(data)
-        #url = data.get('url')
-        url = "https://dev.myrundeck.com/api/38/webhook/cdFlSPxZ5qu7GCue1qUPlw8uUd44s0lt#Slack_Webhook"
-        task = data.get('task')
-        hostname = data.get('hostname')
+
+        # Save the associated Rundeck Webhook URL
+        url = os.getenv('RUNDECK_WEBHOOK_URL')
+
+        # Save the slash command variable values
+        value1 = data.get('var1')
+        value2 = data.get('var2')
+
+        # Save the associated key names for the Rundeck job parameters
+        key1 = os.getenv('SLACK_VAR1')
+        key2 = os.getenv('SLACK_VAR2')
+
+        # Build the transformed Rundeck Webhook request
         headers = {'content-type': 'application/json'}
-        json_data = {"url":url,"task":task,"hostname":hostname}
+        json_data = {"url":url, key1:value1, key2:value2}
+
+        # Forward transformed Slack request to Rundeck as POST
         r = requests.post(url=url, headers=headers, data=json.dumps(json_data))
         return data
+
 
 #---------------------------------------------------------------
 #
