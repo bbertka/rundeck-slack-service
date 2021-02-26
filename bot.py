@@ -5,15 +5,15 @@ import datetime
 
 
 def streamRun():
-        try:
-                print("Slack Service: (re)initializing stream")
-		while(True)
+	try:
+		print("Slack Service: (re)initializing stream")
+		while(True):
 			print("Slack Service: pulse check healthy"):
 			time.sleep(60)
 
-        except Exception as e:
-                print ('Slack Service error: streamRun exception: %s' % e)
-                streamRun()
+	except Exception as e:
+		print ('Slack Service error: streamRun exception: %s' % e)
+		streamRun()
 
 def restartBot():
 	python = sys.executable
@@ -29,4 +29,6 @@ if __name__=='__main__':
 		print('Slack Service error, main exception: %s' % e)
 		worker.stop()
 		restartBot()
-        worker.stop()
+
+	# Shouldnt get here
+	worker.stop()
