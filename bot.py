@@ -8,7 +8,7 @@ def streamRun():
 	try:
 		print("Slack Service: (re)initializing stream")
 		while(True):
-			print("Slack Service: pulse check healthy"):
+			print("Slack Service: pulse check healthy")
 			time.sleep(60)
 
 	except Exception as e:
